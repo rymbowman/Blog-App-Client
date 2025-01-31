@@ -38,9 +38,13 @@ export const validateForm = async (schema, formData) => {
     return {};
   } catch (error) {
     const errors = {};
-    error.inner.forEach((e) => {
-      errors[e.path] = e.message;
-    });
+    if (error.inner) {
+      error.inner.forEach((e) => {
+        errors[e.path] = e.message;
+      });
+    } else {
+      errors[error.path] = error.message;
+    }
     console.log("Validation errors:", errors); // Log validation errors for debugging
     return errors;
   }
