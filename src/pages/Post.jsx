@@ -52,16 +52,16 @@ const PostContent = styled(PostReadTime)({
 });
 
 const Post = () => {
-  const { id } = useParams();
+  const { postId } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     const fetchPost = async () => {
-      const postData = await getPost(id);
+      const postData = await getPost(postId);
       setPost(postData);
     };
     fetchPost();
-  }, [id]);
+  }, [postId]);
 
   if (!post) {
     return <LoadingSpinner loadingMessage={"No posts found"} />;

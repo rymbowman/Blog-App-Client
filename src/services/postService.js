@@ -2,13 +2,9 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL + "/api/posts";
 
-export const getPosts = async (userId) => {
+export const getPosts = async () => {
   try {
-    const response = await axios.get(API_URL, {
-      params: {
-        user_id: userId,
-      },
-    });
+    const response = await axios.get(API_URL);
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error.message);
@@ -16,9 +12,9 @@ export const getPosts = async (userId) => {
   }
 };
 
-export const getPost = async (id) => {
+export const getPost = async (postId) => {
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${API_URL}/${postId}`);
     return response.data;
   } catch (error) {
     console.error(error.message);
@@ -34,18 +30,18 @@ export const createPost = async (post) => {
   }
 };
 
-export const updatePost = async (id, post) => {
+export const updatePost = async (postId, post) => {
   try {
-    const postResponse = await axios.put(`${API_URL}/${id}`, post);
+    const postResponse = await axios.put(`${API_URL}/${postId}`, post);
     return postResponse.data;
   } catch (error) {
     console.error(error.message);
   }
 };
 
-export const deletePost = async (id) => {
+export const deletePost = async (postId) => {
   try {
-    await axios.delete(`${API_URL}/${id}`);
+    await axios.delete(`${API_URL}/${postId}`);
   } catch (error) {
     console.error(error.message);
   }
