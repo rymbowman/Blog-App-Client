@@ -24,6 +24,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL);
     const fetchUsers = async () => {
       const usersData = await getUsers();
       console.log("Users data:", usersData); // Log users data for debugging
