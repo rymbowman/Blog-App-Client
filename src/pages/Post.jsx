@@ -58,6 +58,7 @@ const Post = () => {
   useEffect(() => {
     const fetchPost = async () => {
       const postData = await getPost(postId);
+      console.log(postData);
       setPost(postData);
     };
     fetchPost();
