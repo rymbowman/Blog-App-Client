@@ -9,14 +9,18 @@ export const getValidationSchema = (usersData) => {
       .email("Please enter a valid email (e.g. sample@email.com)")
       .required("Email is required")
       .test("unique-email", "Email is already in use", (value) => {
-        return !usersData.some((user) => user.email === value);
+        return usersData
+          ? !usersData.some((user) => user.email === value)
+          : true;
       }),
     username: yup
       .string()
       .min(6, "Username must be at least 6 characters long.")
       .required("Username is required")
       .test("unique-username", "Username is already in use", (value) => {
-        return !usersData.some((user) => user.username === value);
+        return usersData
+          ? !usersData.some((user) => user.username === value)
+          : true;
       }),
     password: yup
       .string()
