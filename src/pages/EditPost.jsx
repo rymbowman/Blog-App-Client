@@ -57,7 +57,7 @@ const EditPost = () => {
       user_id: user.id,
     };
     await updatePost(id, updatedPost);
-    navigate(`/home/${user.id}`);
+    navigate(`/profile/${user.id}`);
   };
 
   if (!post) {

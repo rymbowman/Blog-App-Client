@@ -14,9 +14,9 @@ export const getPosts = async (userId) => {
   }
 };
 
-export const getPost = async (postId) => {
+export const getPost = async (id) => {
   try {
-    const response = await axios.get(`${API_URL}/${postId}`);
+    const response = await axios.get(`${API_URL}/${id}`);
     return response.data;
   } catch (error) {
     console.error(error.message);
