@@ -84,11 +84,7 @@ const PostCard = ({ post, onDelete }) => {
       </CardContent>
       {isAuthor ? (
         <ButtonContainer>
-          <StyledButton
-            size="small"
-            component={Link}
-            to={`http://localhost:5173/post/${post.id}`}
-          >
+          <StyledButton size="small" component={Link} to={`/post/${post.id}`}>
             Read
           </StyledButton>
           <StyledButton
@@ -103,11 +99,7 @@ const PostCard = ({ post, onDelete }) => {
           </StyledButton>
         </ButtonContainer>
       ) : (
-        <StyledButton
-          size="small"
-          component={Link}
-          to={`http://localhost:5173/post/${post.id}`}
-        >
+        <StyledButton size="small" component={Link} to={`/post/${post.id}`}>
           Read
         </StyledButton>
       )}
