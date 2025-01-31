@@ -11,9 +11,9 @@ export const getUsers = async () => {
   }
 };
 
-export const getUser = async (id) => {
+export const getUser = async (userId) => {
   try {
-    const response = await axios.get(`${API_URL}/${id}`);
+    const response = await axios.get(`${API_URL}/${userId}`);
     return response.data;
   } catch (error) {
     console.error(error.message);
