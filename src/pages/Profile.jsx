@@ -51,7 +51,7 @@ const Profile = () => {
   }, [userId]);
 
   if (!profileUser) {
-    return <LoadingSpinner loadingMessage={"Cannot find user"} />;
+    return <LoadingSpinner loadingMessage={"Looking for user"} />;
   }
 
   return (
