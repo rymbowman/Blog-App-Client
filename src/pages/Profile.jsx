@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import Posts from "./Posts";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import { getUser } from "../services/userService";
+import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/Features/LoadingSpinner";
 
 const ProfileHeader = styled(Box)({
@@ -33,15 +34,21 @@ const StyledAvatar = styled(Avatar)({
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
+  const { userId } = useParams();
   const [profileUser, setProfileUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const user = await getUser(user.id);
-      setProfileUser(user);
+      try {
+        const user = await getUser(userId);
+        setProfileUser(user);
+      } catch (error) {
+        console.error("Error fetching user:", error.message);
+        console.error("error stack:", error.stack);
+      }
     };
     fetchUser();
-  }, [user.id]);
+  }, [userId]);
 
   if (!profileUser) {
     return <LoadingSpinner loadingMessage={"Cannot find user"} />;
