@@ -28,7 +28,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="write" element={<Write />} />
               <Route path="post/:id" element={<Post />} />
-              <Route path="profile/:userId" element={<Profile />} />
+              <Route path="profile/:id" element={<Profile />} />
               <Route path="edit/post/:id" element={<EditPost />} />
               <Route path="profile/:userId/edit" element={<EditProfile />} />
               <Route path="privacy-policy" element={<PrivacyPolicy />} />

@@ -34,13 +34,13 @@ const StyledAvatar = styled(Avatar)({
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
-  const { userId } = useParams();
+  const { id } = useParams();
   const [profileUser, setProfileUser] = useState(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const user = await getUser(userId);
+        const user = await getUser(id);
         setProfileUser(user);
       } catch (error) {
         console.error("Error fetching user:", error.message);
@@ -48,7 +48,7 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, [userId]);
+  }, [id]);
 
   if (!profileUser) {
     return <LoadingSpinner loadingMessage={"Looking for user"} />;
