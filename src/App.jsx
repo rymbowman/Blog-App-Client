@@ -25,7 +25,6 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<MainLayout />}>
-              <Route index element={<Home />} />
               <Route path="write" element={<Write />} />
               <Route path="post/:id" element={<Post />} />
               <Route path="profile/:id" element={<Profile />} />
@@ -34,6 +33,7 @@ function App() {
               <Route path="privacy-policy" element={<PrivacyPolicy />} />
               <Route path="terms-of-service" element={<TermsOfService />} />
             </Route>
+            <Route index element={<Home />} />
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="forgot-password" element={<ForgotPassword />} />

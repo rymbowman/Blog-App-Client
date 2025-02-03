@@ -41,7 +41,7 @@ const ResetPassword = () => {
 
   return (
     <PrimaryContainer>
-      <PrimaryForm component="form" formAction={handleSubmit}>
+      <PrimaryForm componentType={"form"} formAction={handleSubmit}>
         <Typography variant="h4">Reset Password</Typography>
         {error && <Typography color="error">{error}</Typography>}
         <Input
