@@ -6,7 +6,6 @@ import PostCard from "../components/Post/PostCard";
 import CategoryChips from "../components/Category/CategoryChips";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import LoadingSpinner from "../components/Features/LoadingSpinner";
-import { useParams } from "react-router-dom";
 
 const PostsGrid = styled(Box)({
   display: "flex",
@@ -21,8 +20,6 @@ const Posts = ({ userId }) => {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [selectedTopic, setSelectedTopic] = useState("All");
-
-  const { id } = useParams();
 
   // Fetch posts from the server
   useEffect(() => {
@@ -45,7 +42,7 @@ const Posts = ({ userId }) => {
   }, [userId]);
 
   // Delete post
-  const handleDeletePost = async () => {
+  const handleDeletePost = async (id) => {
     try {
       await deletePost(id);
       setPosts(posts.filter((post) => post.id !== id));
