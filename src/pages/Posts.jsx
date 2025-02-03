@@ -1,10 +1,9 @@
-import { Box, Icon, styled, Tooltip, Typography } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
 import { deletePost, getPosts } from "../services/postService";
 import { useEffect, useState } from "react";
 import PostCard from "../components/Post/PostCard";
 import CategoryChips from "../components/Category/CategoryChips";
-import { Link } from "react-router-dom";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import LoadingSpinner from "../components/Features/LoadingSpinner";
 
@@ -13,25 +12,6 @@ const PostsGrid = styled(Box)({
   flexWrap: "wrap",
   gap: "2rem",
   justifyContent: "center",
-});
-
-const CreateIcon = styled(Icon)({
-  fontSize: "2rem",
-  cursor: "pointer",
-  color: "white",
-  backgroundColor: "#FF6F61",
-  width: "3rem",
-  height: "3rem",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: "50%",
-  padding: "0.5rem",
-  textDecoration: "none",
-  transition: "all 0.2s ease-in-out",
-  "&:hover": {
-    backgroundColor: "#FF8A75",
-  },
 });
 
 const Posts = ({ userId }) => {
@@ -100,16 +80,16 @@ const Posts = ({ userId }) => {
             }}
           >
             <Typography variant="h5">{postsStatus}</Typography>
-            <Tooltip title="Create new post">
-              <CreateIcon component={Link} to="/write">
-                add
-              </CreateIcon>
-            </Tooltip>
           </Box>
         ) : (
           <>
             {filteredPosts.map((post) => (
-              <PostCard key={post.id} post={post} onDelete={handleDeletePost} />
+              <PostCard
+                key={post.id}
+                post={post}
+                isAuthor={userId === post.user_id}
+                isonDelete={handleDeletePost}
+              />
             ))}
           </>
         )}

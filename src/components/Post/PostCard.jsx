@@ -9,8 +9,6 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
-import { useContext, useEffect, useState } from "react";
 
 const StyledCard = styled(Card)({
   width: "300px",
@@ -48,21 +46,7 @@ const StyledButton = styled(Button)({
     filter: "brightness(120%)",
   },
 });
-const PostCard = ({ post, onDelete }) => {
-  const [isAuthor, setIsAuthor] = useState(false);
-  const { user } = useContext(AuthContext);
-
-  useEffect(() => {
-    const checkAuthor = () => {
-      if (user && user.id === post.user_id) {
-        setIsAuthor(true);
-      } else if (user && user.id !== post.user_id) {
-        setIsAuthor(false);
-      }
-    };
-    checkAuthor();
-  }, [user, post.user_id]);
-
+const PostCard = ({ post, isAuthor, onDelete }) => {
   return (
     <StyledCard key={post.id}>
       <PostPhoto image={post.image} title={post.title} />
@@ -109,6 +93,7 @@ const PostCard = ({ post, onDelete }) => {
 
 PostCard.propTypes = {
   post: PropTypes.object.isRequired,
+  isAuthor: PropTypes.bool.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 export default PostCard;
