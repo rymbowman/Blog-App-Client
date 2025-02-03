@@ -4,9 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL + "/api/posts";
 
 export const getPosts = async (userId) => {
   try {
-    const response = await axios.get(API_URL, {
-      params: { user_id: userId },
-    });
+    const response = await axios.get(`${API_URL}/${userId}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error.message);
