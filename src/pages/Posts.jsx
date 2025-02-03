@@ -88,7 +88,7 @@ const Posts = ({ userId }) => {
                 key={post.id}
                 post={post}
                 isAuthor={userId === post.user_id}
-                onDelete={handleDeletePost}
+                onDelete={() => handleDeletePost(post.id)}
               />
             ))}
           </>

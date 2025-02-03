@@ -41,9 +41,9 @@ export const updatePost = async (postId, post) => {
   }
 };
 
-export const deletePost = async (postId) => {
+export const deletePost = async (id) => {
   try {
-    await axios.delete(`${API_URL}/${postId}`);
+    await axios.delete(`${API_URL}/${id}`);
   } catch (error) {
     console.error(error.message);
   }
