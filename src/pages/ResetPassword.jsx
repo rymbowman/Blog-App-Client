@@ -58,7 +58,7 @@ const ResetPassword = () => {
           action={(e) => setConfirmPassword(e.target.value)}
           required={true}
         />
-        <PrimaryButton type="submit" buttonText="Reset Password" />
+        <PrimaryButton buttonType={"submit"} buttonText="Reset Password" />
       </PrimaryForm>
     </PrimaryContainer>
   );
