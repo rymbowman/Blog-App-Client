@@ -6,6 +6,7 @@ import PostCard from "../components/Post/PostCard";
 import CategoryChips from "../components/Category/CategoryChips";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import LoadingSpinner from "../components/Features/LoadingSpinner";
+import { useParams } from "react-router-dom";
 
 const PostsGrid = styled(Box)({
   display: "flex",
@@ -43,8 +44,12 @@ const Posts = ({ userId }) => {
 
   // Delete post
   const handleDeletePost = async (id) => {
-    await deletePost(id);
-    setPosts(posts.filter((post) => post.id !== id));
+    try {
+      await deletePost(id);
+      setPosts(posts.filter((post) => post.id !== id));
+    } catch (error) {
+      console.error("Error deleting post:", error.message);
+    }
   };
 
   // Handle click on category chip

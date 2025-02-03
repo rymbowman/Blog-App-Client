@@ -47,6 +47,11 @@ const StyledButton = styled(Button)({
   },
 });
 const PostCard = ({ post, isAuthor, onDelete }) => {
+  const handleDelete = () => {
+    console.log("Deleting post with id:", post.id);
+    onDelete(post.id);
+  };
+
   return (
     <StyledCard key={post.id}>
       <PostPhoto image={post.image} title={post.title} />
@@ -78,7 +83,7 @@ const PostCard = ({ post, isAuthor, onDelete }) => {
           >
             Edit
           </StyledButton>
-          <StyledButton size="small" onClick={onDelete}>
+          <StyledButton size="small" onClick={handleDelete}>
             Delete
           </StyledButton>
         </ButtonContainer>
