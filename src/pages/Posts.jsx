@@ -4,7 +4,7 @@ import { deletePost, getPosts } from "../services/postService";
 import { useEffect, useState } from "react";
 import PostCard from "../components/Post/PostCard";
 import CategoryChips from "../components/Category/CategoryChips";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import LoadingSpinner from "../components/Features/LoadingSpinner";
 
@@ -34,8 +34,7 @@ const CreateIcon = styled(Icon)({
   },
 });
 
-const Posts = () => {
-  const { user_id } = useParams();
+const Posts = ({ userId }) => {
   const [posts, setPosts] = useState([]);
   const [postsStatus, setPostsStatus] = useState("");
   const [error, setError] = useState(false);
@@ -45,7 +44,7 @@ const Posts = () => {
   // Fetch posts from the server
   useEffect(() => {
     const fetchPosts = async () => {
-      const postsData = await getPosts(user_id);
+      const postsData = await getPosts(userId);
 
       if (postsData.length > 0) {
         setError(false);
@@ -60,7 +59,7 @@ const Posts = () => {
       }
     };
     fetchPosts();
-  }, [user_id]);
+  }, [userId]);
 
   // Delete post
   const handleDeletePost = async (id) => {
