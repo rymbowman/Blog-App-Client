@@ -94,7 +94,7 @@ const PostCard = ({ post, onDelete }) => {
           >
             Edit
           </StyledButton>
-          <StyledButton size="small" onClick={() => onDelete(post.id)}>
+          <StyledButton size="small" onClick={onDelete}>
             Delete
           </StyledButton>
         </ButtonContainer>
