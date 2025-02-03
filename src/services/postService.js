@@ -2,9 +2,9 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL + "/api/posts";
 
-export const getPosts = async (userId) => {
+export const getPosts = async (user_id) => {
   try {
-    const response = await axios.get(`${API_URL}/${userId}`);
+    const response = await axios.get(`${API_URL}/${user_id}`);
     return response.data;
   } catch (error) {
     console.error("Error fetching posts:", error.message);

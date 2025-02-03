@@ -35,7 +35,7 @@ const CreateIcon = styled(Icon)({
 });
 
 const Posts = () => {
-  const { userId } = useParams();
+  const { user_id } = useParams();
   const [posts, setPosts] = useState([]);
   const [postsStatus, setPostsStatus] = useState("");
   const [error, setError] = useState(false);
@@ -45,7 +45,7 @@ const Posts = () => {
   // Fetch posts from the server
   useEffect(() => {
     const fetchPosts = async () => {
-      const postsData = await getPosts(userId);
+      const postsData = await getPosts(user_id);
 
       if (postsData.length > 0) {
         setError(false);
@@ -60,7 +60,7 @@ const Posts = () => {
       }
     };
     fetchPosts();
-  }, [userId]);
+  }, [user_id]);
 
   // Delete post
   const handleDeletePost = async (id) => {
