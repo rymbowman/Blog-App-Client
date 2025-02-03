@@ -22,6 +22,8 @@ const Posts = ({ userId }) => {
   const [loading, setLoading] = useState(true);
   const [selectedTopic, setSelectedTopic] = useState("All");
 
+  const { id } = useParams();
+
   // Fetch posts from the server
   useEffect(() => {
     const fetchPosts = async () => {
@@ -43,7 +45,7 @@ const Posts = ({ userId }) => {
   }, [userId]);
 
   // Delete post
-  const handleDeletePost = async (id) => {
+  const handleDeletePost = async () => {
     try {
       await deletePost(id);
       setPosts(posts.filter((post) => post.id !== id));
