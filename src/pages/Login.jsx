@@ -46,6 +46,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Error logging in:", error);
+      setError("An error occurred while logging in. Please try again.");
       setForgotPassword(true);
     } finally {
       setLoading(false);
@@ -80,7 +81,7 @@ const Login = () => {
           action={(e) => setPassword(e.target.value)}
         />
         {error && <Typography color="red">{error}</Typography>}
-        {loading && <LoadingSpinner loadingMessage={""} />}
+        {loading && <LoadingSpinner loadingMessage={"Signing in..."} />}
         <PrimaryButton buttonText="Sign in" buttonType={"submit"} />
         {forgotPassword ? (
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
