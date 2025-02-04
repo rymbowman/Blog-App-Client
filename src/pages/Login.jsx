@@ -8,6 +8,7 @@ import PrimaryContainer from "../components/Features/PrimaryContainer";
 import PrimaryForm from "../components/Features/PrimaryForm";
 import Input from "../components/Features/Input";
 import LogoBox from "../components/Features/LogoBox";
+import LoadingSpinner from "../components/Features/LoadingSpinner";
 
 const StyledLink = styled(Link)({
   color: "red",
@@ -21,26 +22,33 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form button clicked");
+    if (!username || !password) {
+      setError("Username and password are required");
+      return;
+    }
+    setLoading(true);
+    setError("");
     try {
       const result = await loginUser({ username, password });
-      console.log("this is the result:", result);
       if (!result) {
-        console.log("loginUser api call did not go through");
+        setError("Invalid username or password");
         setForgotPassword(true);
       } else {
         login(result);
-        console.log("this is the result after login:", result);
         navigate(`/profile/${result.id}`);
       }
     } catch (error) {
       console.error("Error logging in:", error);
       setForgotPassword(true);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -71,6 +79,8 @@ const Login = () => {
           type="password"
           action={(e) => setPassword(e.target.value)}
         />
+        {error && <Typography color="red">{error}</Typography>}
+        {loading && <LoadingSpinner loadingMessage={""} />}
         <PrimaryButton buttonText="Sign in" buttonType={"submit"} />
         {forgotPassword ? (
           <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
