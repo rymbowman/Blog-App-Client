@@ -12,6 +12,7 @@ const PostsGrid = styled(Box)({
   flexWrap: "wrap",
   gap: "2rem",
   justifyContent: "center",
+  width: "100%",
 });
 
 const Posts = ({ userId }) => {
@@ -72,21 +73,12 @@ const Posts = ({ userId }) => {
         selectedCategory={selectedTopic}
         onClick={handleClick}
       />
-      <PostsGrid>
+      <Box>
         {loading && <LoadingSpinner loadingMessage={"Loading posts..."} />}
         {error ? (
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: "3rem",
-            }}
-          >
-            <Typography variant="h5">{postsStatus}</Typography>
-          </Box>
+          <Typography variant="h5">{postsStatus}</Typography>
         ) : (
-          <>
+          <PostsGrid>
             {filteredPosts.map((post) => (
               <PostCard
                 key={post.id}
@@ -95,9 +87,9 @@ const Posts = ({ userId }) => {
                 onDelete={() => handleDeletePost(post.id)}
               />
             ))}
-          </>
+          </PostsGrid>
         )}
-      </PostsGrid>
+      </Box>
     </PrimaryContainer>
   );
 };
