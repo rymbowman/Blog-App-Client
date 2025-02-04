@@ -1,11 +1,11 @@
 import { Box, styled, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import { deletePost, getPosts } from "../services/postService";
 import { useEffect, useState } from "react";
-import PostCard from "../components/Post/PostCard";
-import CategoryChips from "../components/Category/CategoryChips";
-import PrimaryContainer from "../components/Features/PrimaryContainer";
-import LoadingSpinner from "../components/Features/LoadingSpinner";
+import { getPosts, deletePost } from "../../services/postService";
+import PrimaryContainer from "../Features/PrimaryContainer";
+import CategoryChips from "./CategoryChips";
+import PostCard from "./PostCard";
+import LoadingSpinner from "../Features/LoadingSpinner";
 
 const PostsGrid = styled(Box)({
   display: "flex",
@@ -15,7 +15,7 @@ const PostsGrid = styled(Box)({
   width: "100%",
 });
 
-const Posts = ({ userId }) => {
+const PostsContainer = ({ userId }) => {
   const [posts, setPosts] = useState([]);
   const [postsStatus, setPostsStatus] = useState("");
   const [error, setError] = useState(false);
@@ -94,9 +94,9 @@ const Posts = ({ userId }) => {
   );
 };
 
-export default Posts;
+export default PostsContainer;
 
-Posts.propTypes = {
+PostsContainer.propTypes = {
   posts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

@@ -1,7 +1,7 @@
 import { Avatar, Box, styled, Typography } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import Posts from "./Posts";
+import Posts from "../components/Post/PostsContainer";
 import PrimaryContainer from "../components/Features/PrimaryContainer";
 import { getUser } from "../services/userService";
 import { useParams } from "react-router-dom";
